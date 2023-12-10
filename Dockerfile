@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0:8.0 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
 
 WORKDIR /src
 COPY src/Pi.Math/Pi.Math.csproj ./Pi.Math/
