@@ -4,3 +4,4 @@ WORKDIR /App
 # Copy everything
 COPY . ./
 RUN dotnet restore
+RUN dotnet publish -c Release -o out
