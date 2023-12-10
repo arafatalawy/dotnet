@@ -5,3 +5,4 @@ WORKDIR /App
 COPY . ./
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
+ENTRYPOINT ["dotnet"]
