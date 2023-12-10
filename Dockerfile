@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:8.0 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:8.0:8.0 AS builder
 
 WORKDIR /src
 COPY src/Pi.Math/Pi.Math.csproj ./Pi.Math/
@@ -14,7 +14,7 @@ COPY src/Pi.Web /src/Pi.Web/
 RUN dotnet publish -c Release -o /out Pi.Web.csproj
 
 # app image
-FROM mcr.microsoft.com/dotnet/core/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnett:8.0
 
 EXPOSE 80
 ENTRYPOINT ["dotnet", "Pi.Web.dll"]
