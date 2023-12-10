@@ -8,12 +8,6 @@ pipeline {
         """
       }
     }
-    stage("run") {
-      steps {
-        sh """
-          docker run --rm dotnet
-        """
-      }
-    }
+
   }
 }
