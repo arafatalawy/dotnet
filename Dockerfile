@@ -6,4 +6,4 @@ COPY . ./
 
 
 
-ENTRYPOINT ["dotnet"]
+ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
