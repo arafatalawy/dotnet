@@ -3,3 +3,4 @@ WORKDIR /App
 
 # Copy everything
 COPY . ./
+RUN dotnet restore
