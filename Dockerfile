@@ -3,5 +3,3 @@ WORKDIR /App
 
 # Copy everything
 COPY . ./
-
-ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
