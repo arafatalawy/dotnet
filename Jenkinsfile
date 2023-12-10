@@ -8,7 +8,7 @@ pipeline
     {
 
     steps{
-        sh "docker build -t dotnet"
+        sh "docker build -t dotnet ."
     }
    
     }
