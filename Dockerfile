@@ -14,7 +14,7 @@ COPY src/Pi.Web /src/Pi.Web/
 RUN dotnet publish -c Release -o /out Pi.Web.csproj
 
 # app image
-FROM mcr.microsoft.com/dotnet/aspnett:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 EXPOSE 80
 ENTRYPOINT ["dotnet", "Pi.Web.dll"]
