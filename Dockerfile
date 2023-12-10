@@ -1,9 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
-WORKDIR /App
+FROM mcr.microsoft.com/dotnet/core/sdk:8.0 AS builder
 
-# Copy everything
-COPY . ./
+WORKDIR /src
+COPY src/Pi.Math/Pi.Math.csproj ./Pi.Math/
+COPY src/Pi.Runtime/Pi.Runtime.csproj ./Pi.Runtime/
+COPY src/Pi.Web/Pi.Web.csproj ./Pi.Web/
 
+WORKDIR /src/Pi.Web
+RUN dotnet restore
 
+COPY src/Pi.Math/ /src/Pi.Math/
+COPY src/Pi.Runtime /src/Pi.Runtime/
+COPY src/Pi.Web /src/Pi.Web/
+RUN dotnet publish -c Release -o /out Pi.Web.csproj
 
-ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
+# app image
+FROM mcr.microsoft.com/dotnet/core/aspnet:8.0
+
+EXPOSE 80
+ENTRYPOINT ["dotnet", "Pi.Web.dll"]
+CMD ["-m", "console", "-dp", "6"]
+
+WORKDIR /app
+COPY --from=builder /out/ .
