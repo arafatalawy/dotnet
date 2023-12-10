@@ -1,25 +1,19 @@
-pipeline
-{
-
-    agent any
-    stages
-    {
-    stage("Building")
-    {
-
-    steps{
-        sh "docker build -t dotnet ."
+pipeline {
+  agent any
+  stages {
+    stage("build") {
+      steps {
+        sh """
+          docker build -t dotnet .
+        """
+      }
     }
-   
+    stage("run") {
+      steps {
+        sh """
+          docker run --rm dotnet
+        """
+      }
     }
-     stage("Running")
-    {
-
-     steps{
-
-       
-     sh "docker run --rm dotnet"
-     }
-    }
-    }
+  }
 }
