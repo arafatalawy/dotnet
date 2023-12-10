@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh """
           docker build -t dotnet .
+          dotnet --list-sdks
         """
       }
     }
